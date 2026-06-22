@@ -1,0 +1,27 @@
+{
+  "title": "Pricing Engine Metrics",
+  "panels": [
+    {
+      "title": "API Request Rate",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "rate(http_requests_total[1m])",
+          "legendFormat": "{{method}} {{handler}} ({{status}})"
+        }
+      ],
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0}
+    },
+    {
+      "title": "Average Predicted Price",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "rate(predicted_price_sum[1m]) / rate(predicted_price_count[1m])",
+          "legendFormat": "Avg Price"
+        }
+      ],
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0}
+    }
+  ]
+}

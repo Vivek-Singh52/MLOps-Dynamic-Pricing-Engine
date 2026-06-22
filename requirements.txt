@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+pydantic
+xgboost
+scikit-learn
+pandas
+numpy
+prometheus-fastapi-instrumentator
+requests
+pytest
+httpx
