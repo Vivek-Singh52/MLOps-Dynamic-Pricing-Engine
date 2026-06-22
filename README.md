@@ -2,11 +2,11 @@
 
 This repository contains a production-grade, end-to-end Machine Learning Operations (MLOps) dynamic pricing engine designed to predict the optimal price for a simulated ride-sharing application. It showcases how to bridge the gap between offline model training and production-ready serving, monitoring, and containerization.
 
-Made with ❤️ by **Siddhi Kumbhar**.
+Made by **Siddhi Kumbhar**.
 
 ---
 
-## 🚀 Key Features
+##  Key Features
 
 * **Real-time Price Inference**: Serves model predictions with sub-second latency using FastAPI.
 * **Production-Ready Input Validation**: Employs strict schema validation using Pydantic.
@@ -16,7 +16,7 @@ Made with ❤️ by **Siddhi Kumbhar**.
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 * **Machine Learning**: Python, XGBoost, Scikit-Learn, Pandas, NumPy
 * **API Serving**: FastAPI, Uvicorn, Pydantic
@@ -26,7 +26,7 @@ Made with ❤️ by **Siddhi Kumbhar**.
 
 ---
 
-## 🏗️ System Architecture
+##  System Architecture
 
 1. **Synthetic Data Generator (`data_pipeline/generate_data.py`)**:
    Generates a synthetic historical dataset simulating ride-sharing trips. Features include `time_of_day`, `weather_condition` (Clear, Rain, Snow), `demand_multiplier`, and `base_price`. The target `optimal_price` is calculated with realistic market noise and business rules.
@@ -46,7 +46,7 @@ Made with ❤️ by **Siddhi Kumbhar**.
 
 ---
 
-## 📸 Screenshots & Demo
+##  Screenshots & Demo
 
 ### 1. Swagger UI - API Schema and Request Input
 The FastAPI endpoint validates incoming pricing requests using Pydantic schemas, preventing invalid features from reaching the model.
@@ -65,7 +65,7 @@ The Grafana dashboard visualizes scrapings from Prometheus, letting you track to
 
 ---
 
-## ⚙️ How to Run & Test
+##  How to Run & Test
 
 ### Option 1: Running with Docker (Recommended)
 
@@ -117,8 +117,3 @@ docker compose up -d --build
 
 ---
 
-## 🌟 Key MLOps Interview Concepts to Highlight
-
-1. **Out-of-Distribution (OOD) Extrapolation**: Tree-based models (like XGBoost) cannot extrapolate trends outside their training bounds (e.g., if the model was trained on `base_price` up to `$20`, querying it with `$50` will return capped predictions).
-2. **Business Fallback Guardrails**: In `app/main.py`, the API utilizes a safety constraint: `max(request.base_price, float(prediction))`. This ensures that even if the model predicts an OOD low price, the business does not sell below the base price.
-3. **Observability & Drift Detection**: Setting up custom Prometheus histograms for model predictions enables real-time monitoring of output distributions. If the average predicted price shifts significantly, it triggers alarms in Grafana indicating it's time to trigger a pipeline retrain.
